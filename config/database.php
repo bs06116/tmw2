@@ -1,5 +1,10 @@
 <?php
+$url = parse_url(getenv("postgres://xmoljbvcvhwxma:81478184edd9d50205060cc53178ac8968bc5756564ce45e75139782874779a5@ec2-54-228-243-238.eu-west-1.compute.amazonaws.com:5432/dav82hnmd6n2dk"));
 
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
 return [
 
     /*
@@ -41,11 +46,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', $host),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'tmw'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', $database),
+            'username' => env('DB_USERNAME', $username),
+            'password' => env('DB_PASSWORD', $password),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
