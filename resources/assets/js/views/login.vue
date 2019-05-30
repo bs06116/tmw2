@@ -58,7 +58,8 @@
                         this.$router.push({ name: 'all_member' })
                     }
                 }).catch(function (error) {
-                    this.errors=error.response.data.msg
+                    console.info(error)
+                    vm.errors=error.response.data.msg
                 });
             }
         },

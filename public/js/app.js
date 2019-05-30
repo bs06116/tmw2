@@ -58172,7 +58172,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.$router.push({ name: 'all_member' });
                 }
             }).catch(function (error) {
-                this.errors = error.response.data.msg;
+                console.info(error);
+                vm.errors = error.response.data.msg;
             });
         }
     },
