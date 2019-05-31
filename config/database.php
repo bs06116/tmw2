@@ -56,7 +56,7 @@ return [
 
                 'mysql' => [
             'driver' => 'mysql',
-            'host' => 'db4free.net',
+            'host' => 'db4free.net:3306/tmdc_123456',
             'port' => '3306',
             'database' => 'tmdc_112233',
             'username' => 'tmdc_123456',
