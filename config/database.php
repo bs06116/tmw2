@@ -56,11 +56,11 @@ return [
 
                 'mysql' => [
             'driver' => 'mysql',
-            'host' => 'db4free.net:3306/tmdc_123456',
+            'host' => 'db4free.net:3306',
             'port' => '3306',
-            'database' => 'tmdc_112233',
-            'username' => 'tmdc_123456',
-            'password' =>'Aa112233',
+            'database' => 'tmwdc_db',
+            'username' => 'tmwdc_user',
+            'password' =>'A125126127',
                     'charset' => 'utf8mb4',
                     'collation' => 'utf8mb4_unicode_ci',
                     'prefix' => '',
