@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('user/login', 'AuthController@login');
 Route::post('member/list', 'HomeController@viewMember');
 Route::post('add/member', 'HomeController@insertMember');
+Route::post('single/member', 'HomeController@editMember');
+Route::post('update/member', 'HomeController@updateMember');
+Route::post('detail/member', 'HomeController@detailsMember');

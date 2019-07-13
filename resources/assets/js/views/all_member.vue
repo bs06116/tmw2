@@ -8,12 +8,23 @@
             </div>
         <BTable striped hover :items="all_member" :filter="filter" :fields="fields" :per-page="perPage"
                 :current-page="currentPage">
+            <template slot="name" slot-scope="data">
+                <router-link tag="a" class="nav-link" :to="{ name: 'member', params: { memberId: data.item.id }}">
+                    {{data.value}}
+                </router-link>
+            </template>
+
             <template slot="status" slot-scope="data">
                      <select class="form-control" >
                          <option :selected="data.value===1">Active</option>
                          <option :selected="data.value===2">Died</option>
                          <option :selected="data.value===3">Terminated</option>
                      </select>
+            </template>
+            <template slot="id" slot-scope="data">
+                <router-link tag="a" class="nav-link" :to="{ name: 'edit_member', params: { memberId: data.value }}">
+                    Edit Member
+                </router-link>
             </template>
         </BTable>
             <BPagination
@@ -29,10 +40,7 @@
 <script>
     import BTable from 'bootstrap-vue/es/components/table/table'
     import BPagination from 'bootstrap-vue/es/components/pagination/pagination'
-
     import helper from "../helper/consts"
-
-
     export default {
         data() {
             components: {
@@ -71,12 +79,17 @@
                         label: 'Status',
                         sortable: false,
                     },
+                    {
+                        key: 'id',
+                        label: 'Edit',
+                        sortable: false,
+                    },
+
                 ],
                 all_member:[]
             }
         },
         mounted() {
-            console.log('Component mounted.')
             this.getMember()
         },
         methods: {
@@ -84,7 +97,6 @@
                 let vm=this
                 axios.post(helper.get_member_api, {
                 }).then(function (response) {
-                    console.info(response)
                     vm.all_member=response.data.result
                     vm.totalRows=response.data.result.length
                 }).catch(function (error) {

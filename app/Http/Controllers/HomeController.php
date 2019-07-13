@@ -31,12 +31,7 @@ class HomeController extends Controller
             ->where('admin_type', '0')
             ->orderBy('id', 'desc')
             ->get();
-
-        return response()->json(
-            ["result"=>$data->toArray()],200);
-
-
-        //return view('view_member',$data);
+        return response()->json(["result"=>$data->toArray()],200);
     }
 
     public function insertMember(Request $request)
@@ -60,11 +55,12 @@ class HomeController extends Controller
             'dob' => 'sometimes|required|max:255',
            );
         $messages = array(
-            'book_number.required' => '<p>Please enter Book number.</p>',
+            'book_number.required' => '<p>Please enter book number.</p>',
             'book_number.unique' =>'<p>Book number already exits.</p>' ,
-            'name.required' => '<p>Please enter  name</p>',
-            'email.required' => '<p>Please enter email</p>',
+            'name.required' => '<p>Please enter  name.</p>',
+            'email.required' => '<p>Please enter email.</p>',
             'email.unique' =>'<p>Email already exits.</p>' ,
+            'dob.required' => '<p>Please enter DOB.</p>',
             //'head_relation.etc' => '<p>You can add one Spouse.</p>',
         );
         $input = Input::all();
@@ -72,7 +68,7 @@ class HomeController extends Controller
         if(!empty($head_relation) && !empty($relation)){
             if(!$this->checkSpouse($head_relation,$relation))
                 $validator->after(function ($validator) {
-                    $validator->errors()->add('head_relation', 'You can add one Spouse');
+                    $validator->errors()->add('head_relation', 'You can add only one Spouse.');
                 });
         }
         if ($validator->fails()) {
@@ -108,13 +104,12 @@ class HomeController extends Controller
                 }
             }
 
-
             DB::table('user_relation')->insert($relation_array);
             return response()->json(['success' => true,'message'=>'Your data has been save successfully.','user_id'=>$last_id], 200);
         }
 
     }
-    public function update_member(Request $request)
+    public function updateMember(Request $request)
     {
         $name = Input::get('name');
         $email = Input::get('email');
@@ -122,14 +117,12 @@ class HomeController extends Controller
         $postcode = Input::get('postalcode');
         $telephone = Input::get('telephone');
         $fname = Input::get('fname');
-
         $user_id = Input::get('user_id');
         $book_number = Input::get('book_number');
         $dob = Input::get('dob');
         $head_relation = Input::get('head_relation');
         $relation = Input::get('relation');
         $gender = Input::get('gender');
-
         $rules = array(
             'book_number' => 'required|max:50|unique:users,book_number,'.$user_id,
             'name' => 'required|max:255',
@@ -209,6 +202,17 @@ class HomeController extends Controller
         return true;
 
     }
+    public function editMember()
+    {
+        $id = Input::get('id');
+        $result = DB::table('users')
+            ->where('id', $id)
+            ->first();
+        $result_user_relaiton = DB::table('user_relation')
+            ->where('user_id', $id)
+            ->get();
+        return response()->json(["member_relation"=>$result,"user_relation"=>$result_user_relaiton],200);
+    }
     public function updateFileStatus(){
         $user_id = Input::get('user_id');
         $status = Input::get('status');
@@ -235,6 +239,22 @@ class HomeController extends Controller
         $last_id = Common::insert_data($data,"users");
         return response()->json(['success' => true,'message'=>'Your data has been save successfully.','id'=>$user_id], 200);
 
+    }
 
+    /**
+     * get all member against id
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function detailsMember(Request $request)
+    {
+        $id=$request->input('id');
+        $result = DB::table('users')
+            ->where('id', $id)
+            ->first();
+        $result_user_relaiton = DB::table('user_relation')
+            ->where('user_id', $id)
+            ->get();
+        return response()->json(["member_relation"=>$result,"user_relation"=>$result_user_relaiton],200);
     }
 }

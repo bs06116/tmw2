@@ -23,6 +23,18 @@ const routes = [
                 name: 'add_member',
                 path: '/add-member',
                 component: require('./views/add_member.vue')
+            },
+            {
+                name: 'edit_member',
+                path: '/edit-member/:memberId',
+                component: require('./views/edit_member.vue'),
+                props: true,
+            },
+            {
+                name: 'member',
+                path: '/member/:memberId',
+                component: require('./views/details_member.vue'),
+                props: true,
             }
         ]
     }
