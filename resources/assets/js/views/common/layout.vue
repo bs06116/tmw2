@@ -27,18 +27,14 @@
                     <li class="nav-item dropdown">
                         <a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Admin <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Logout</a></li>
+                            <li><a href="#" class="dropdown-item" @click.prevent="logout()">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
-
             </div>
         </nav>
         <router-view></router-view>
     </div>
-
-
-
 </template>
 
 <script>
@@ -46,6 +42,13 @@
         data() {
             return{
 
+            }
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch("setLogged", false).then(
+                    this.$router.push({ name: 'login' })
+                )
             }
         },
     }

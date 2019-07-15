@@ -54,11 +54,12 @@
                     email: this.email,
                     password: this.password
                 }).then(response =>response.data).then(response => {
+                    this.$store.dispatch("setLogged", true)
                     if(response.status){
+                        console.info(response.status)
                         this.$router.push({ name: 'all_member' })
                     }
                 }).catch(function (error) {
-                    console.info(error)
                     vm.errors=error.response.data.msg
                 });
             }
