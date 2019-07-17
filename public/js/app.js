@@ -60727,6 +60727,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -60765,7 +60767,25 @@ var render = function() {
             },
             [
               _c("ul", { staticClass: "nav navbar-nav" }, [
-                _vm._m(1),
+                _c(
+                  "li",
+                  { staticClass: "nav-item active" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        class: "nav-link",
+                        attrs: { tag: "a", to: { name: "all_member" } }
+                      },
+                      [
+                        _vm._v(
+                          "\n                       Home\n                    "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -60787,28 +60807,8 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item active" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        class: "nav-link",
-                        attrs: { tag: "a", to: { name: "all_member" } }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        View Member\n                    "
-                        )
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
                 _c("li", { staticClass: "nav-item dropdown" }, [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("ul", { staticClass: "dropdown-menu" }, [
                     _c("li", [
@@ -60847,8 +60847,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "navbar-header d-flex col" }, [
       _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-        _vm._v("Brand"),
-        _c("b", [_vm._v("Name")])
+        _vm._v("TMWDC")
       ]),
       _vm._v(" "),
       _c(
@@ -60871,16 +60870,6 @@ var staticRenderFns = [
           _c("span", { staticClass: "icon-bar" })
         ]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _vm._v("Home")
-      ])
     ])
   },
   function() {
@@ -61060,6 +61049,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.info(error);
             });
+        },
+        onFiltered: function onFiltered(filteredItems) {
+            // Trigger pagination to update the number of buttons/pages due to filtering
+            this.totalRows = filteredItems.length;
+            this.currentPage = 1;
         }
     }
 
@@ -61121,6 +61115,7 @@ var render = function() {
             "per-page": _vm.perPage,
             "current-page": _vm.currentPage
           },
+          on: { filtered: _vm.onFiltered },
           scopedSlots: _vm._u([
             {
               key: "name",
@@ -63205,13 +63200,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "col-sm-6 mx-auto bg-white py-3 px-4 my-4" }, [
       _c(
         "div",
         { staticClass: "card-content" },
         [
           _c("div", { staticClass: "field" }, [
-            _c("label", { staticClass: "label" }, [_vm._v("Book Number")]),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
               _vm._v(
@@ -63223,7 +63218,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("label", { staticClass: "label" }, [_vm._v("Name")]),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
               _vm._v("\n                    " + _vm._s(_vm.name) + " "),
@@ -63232,7 +63227,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("label", { staticClass: "label" }, [_vm._v("Email")]),
+            _vm._m(2),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
               _vm._v(
@@ -63244,7 +63239,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("label", { staticClass: "label" }, [_vm._v("Address")]),
+            _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
               _vm._v(
@@ -63256,7 +63251,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("label", { staticClass: "label" }, [_vm._v("Telephone")]),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
               _vm._v(
@@ -63268,7 +63263,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("label", { staticClass: "label" }, [_vm._v("PostCode")]),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "control" }, [
               _vm._v(
@@ -63301,7 +63296,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
-                _c("label", { staticClass: "label" }, [_vm._v("Name")]),
+                _vm._m(6, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
                   _vm._v(
@@ -63313,7 +63308,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
-                _c("label", { staticClass: "label" }, [_vm._v("Gender")]),
+                _vm._m(7, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
                   _vm._v(
@@ -63325,7 +63320,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
-                _c("label", { staticClass: "label" }, [_vm._v("DOB")]),
+                _vm._m(8, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
                   _vm._v(
@@ -63337,7 +63332,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "field" }, [
-                _c("label", { staticClass: "label" }, [_vm._v("Relation")]),
+                _vm._m(9, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "control" }, [
                   _vm._v(
@@ -63357,7 +63352,88 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Book Number")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Email")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Address")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Telephone")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("PostCode")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Name")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Gender")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("DOB")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _c("strong", [_vm._v("Relation")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

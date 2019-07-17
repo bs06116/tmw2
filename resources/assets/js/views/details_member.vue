@@ -1,39 +1,39 @@
 <template>
     <div class="container">
-        <div class="card">
+        <div class="col-sm-6 mx-auto bg-white py-3 px-4 my-4">
             <div class="card-content" >
                 <div class="field">
-                    <label class="label">Book Number</label>
+                    <label class="label"><strong>Book Number</strong></label>
                     <div class="control">
                         {{book_number}}
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">Name</label>
+                    <label class="label"><strong>Name</strong></label>
                     <div class="control">
                         {{name}} <b>(HEAD)</b>
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">Email</label>
+                    <label class="label"><strong>Email</strong></label>
                     <div class="control">
                         {{email}}
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">Address</label>
+                    <label class="label"><strong>Address</strong></label>
                     <div class="control">
                         {{address}}
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">Telephone</label>
+                    <label class="label"><strong>Telephone</strong></label>
                     <div class="control">
                         {{telephone}}
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label">PostCode</label>
+                    <label class="label"><strong>PostCode</strong></label>
                     <div class="control">
                         {{postcode}}
                     </div>
@@ -45,26 +45,26 @@
                 <div v-for="sh in sub_head">
                     <button class="btn-info move_new_file" :disabled='sh.status==0' v-if="sh.status=='son' || sh.status=='daughter'">Over 18 - Moved to new file </button>
                     <div class="field">
-                        <label class="label">Name</label>
+                        <label class="label"><strong>Name</strong></label>
                         <div class="control">
                             {{sh.name}}
                         </div>
 
                     </div>
                     <div class="field">
-                        <label class="label">Gender</label>
+                        <label class="label"><strong>Gender</strong></label>
                         <div class="control">
                             {{sh.gender}}
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label">DOB</label>
+                        <label class="label"><strong>DOB</strong></label>
                         <div class="control">
                             {{sh.dob}}
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label">Relation</label>
+                        <label class="label"><strong>Relation</strong></label>
                         <div class="control">
                             {{sh.relation}}
                         </div>

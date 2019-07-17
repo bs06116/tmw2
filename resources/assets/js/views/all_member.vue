@@ -7,7 +7,7 @@
                 </div>
             </div>
         <BTable striped hover :items="all_member" :filter="filter" :fields="fields" :per-page="perPage"
-                :current-page="currentPage">
+                :current-page="currentPage"  @filtered="onFiltered">
             <template slot="name" slot-scope="data">
                 <router-link tag="a" class="nav-link" :to="{ name: 'member', params: { memberId: data.item.id }}">
                     {{data.value}}
@@ -104,6 +104,11 @@
                 });
 
             },
+            onFiltered(filteredItems) {
+                // Trigger pagination to update the number of buttons/pages due to filtering
+                this.totalRows = filteredItems.length
+                this.currentPage = 1
+            }
         },
 
     }
