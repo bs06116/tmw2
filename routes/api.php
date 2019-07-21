@@ -22,3 +22,4 @@ Route::post('add/member', 'HomeController@insertMember');
 Route::post('single/member', 'HomeController@editMember');
 Route::post('update/member', 'HomeController@updateMember');
 Route::post('detail/member', 'HomeController@detailsMember');
+Route::post('update/payment', 'HomeController@updatePayment');

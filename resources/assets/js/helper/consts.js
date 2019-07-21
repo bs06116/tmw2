@@ -5,5 +5,6 @@ export default {
     add_member_api:'/api/add/member',
     single_member_api:'/api/single/member',
     update_member_api:'/api/update/member',
-    details_member_api:'/api/detail/member'
+    details_member_api:'/api/detail/member',
+    update_payment_status_api:'/api/update/payment'
 }

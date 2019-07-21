@@ -33,7 +33,6 @@
 <script>
     import { required, email } from "vuelidate/lib/validators";
     import helper from "../helper/consts"
-
     export default {
         data() {
             return{
@@ -56,7 +55,7 @@
                 }).then(response =>response.data).then(response => {
                     this.$store.dispatch("setLogged", true)
                     if(response.status){
-                        console.info(response.status)
+                       console.info(response.status)
                         this.$router.push({ name: 'all_member' })
                     }
                 }).catch(function (error) {

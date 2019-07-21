@@ -926,7 +926,8 @@ module.exports = function normalizeComponent (
     add_member_api: '/api/add/member',
     single_member_api: '/api/single/member',
     update_member_api: '/api/update/member',
-    details_member_api: '/api/detail/member'
+    details_member_api: '/api/detail/member',
+    update_payment_status_api: '/api/update/payment'
 });
 
 /***/ }),
@@ -59693,7 +59694,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -60992,6 +60992,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -61008,6 +61014,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             totalRows: 0,
             pageOptions: [5, 10, 15],
             filter: null,
+            payment_status: 'Unpaid',
             fields: [{
                 key: 'name',
                 label: 'Name',
@@ -61032,6 +61039,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 key: 'id',
                 label: 'Edit',
                 sortable: false
+            }, {
+                key: 'payment_status',
+                label: 'Payment Status',
+                sortable: false
             }],
             all_member: []
         };
@@ -61048,6 +61059,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 vm.totalRows = response.data.result.length;
             }).catch(function (error) {
                 console.info(error);
+            });
+        },
+        updatePaymentStatus: function updatePaymentStatus(id, payment_status) {
+            var _this = this;
+
+            var vm = this;
+            axios.post(__WEBPACK_IMPORTED_MODULE_2__helper_consts__["a" /* default */].update_payment_status_api, {
+                id: id,
+                payment_status: payment_status
+            }).then(function (response) {
+                return response.data;
+            }).then(function (response) {
+                _this.getMember();
+            }).catch(function (error) {
+                return error.data;
+            }).then(function (error) {
+                vm.errors = error.response.data.msg;
             });
         },
         onFiltered: function onFiltered(filteredItems) {
@@ -61182,6 +61210,32 @@ var render = function() {
                     },
                     [_vm._v("\n                Edit Member\n            ")]
                   )
+                ]
+              }
+            },
+            {
+              key: "payment_status",
+              fn: function(data) {
+                return [
+                  data.value == 0
+                    ? _c("span", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:void(0)" },
+                            on: {
+                              click: function($event) {
+                                return _vm.updatePaymentStatus(
+                                  data.item.id,
+                                  data.value
+                                )
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(_vm.payment_status))]
+                        )
+                      ])
+                    : _c("span", [_vm._v("Paid")])
                 ]
               }
             }

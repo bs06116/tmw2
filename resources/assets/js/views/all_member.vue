@@ -26,6 +26,12 @@
                     Edit Member
                 </router-link>
             </template>
+
+            <template slot="payment_status" slot-scope="data">
+                <span  v-if="data.value==0"><a href="javascript:void(0)" @click="updatePaymentStatus(data.item.id,data.value)">{{payment_status}}</a></span>
+                <span v-else>Paid</span>
+
+            </template>
         </BTable>
             <BPagination
                     v-model="currentPage"
@@ -53,6 +59,7 @@
                 totalRows: 0,
                 pageOptions: [5, 10, 15],
                 filter: null,
+                payment_status:'Unpaid',
                 fields: [
                      {
                         key: 'name',
@@ -84,6 +91,11 @@
                         label: 'Edit',
                         sortable: false,
                     },
+                    {
+                        key: 'payment_status',
+                        label: 'Payment Status',
+                        sortable: false,
+                    },
 
                 ],
                 all_member:[]
@@ -103,6 +115,17 @@
                     console.info(error)
                 });
 
+            },
+            updatePaymentStatus(id,payment_status){
+                let vm=this
+                axios.post(helper.update_payment_status_api, {
+                    id: id,
+                    payment_status: payment_status
+                }).then(response =>response.data).then(response => {
+                    this.getMember()
+                }).catch(error=>error.data).then(error => {
+                    vm.errors=error.response.data.msg
+                });
             },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering

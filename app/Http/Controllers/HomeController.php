@@ -91,7 +91,6 @@ class HomeController extends Controller
             );
             $last_id = Common::insert_data($data,"users");
             $relation_array=array();
-
             if($relation){
                 for($i=0; $i<count($relation);$i++){
                     if($fname[$i]!=''){
@@ -103,7 +102,6 @@ class HomeController extends Controller
                     }
                 }
             }
-
             DB::table('user_relation')->insert($relation_array);
             return response()->json(['success' => true,'message'=>'Your data has been save successfully.','user_id'=>$last_id], 200);
         }
@@ -256,5 +254,12 @@ class HomeController extends Controller
             ->where('user_id', $id)
             ->get();
         return response()->json(["member_relation"=>$result,"user_relation"=>$result_user_relaiton],200);
+    }
+    public function updatePayment(){
+        $id = Input::get('id');
+        $payment_status = Input::get('payment_status')==0?1:0;
+        $update_status=array("payment_status"=>$payment_status);
+        $result=DB::table('users')->where('id',$id)->update($update_status);
+        return response()->json(['success' => true,'message'=>'Your data has been update successfully.'], 200);
     }
 }
